@@ -4,7 +4,6 @@ import {
   GET_PRODUCT_DETAIL_FAIL
 } from '../actions/types';
 
-// eslint-disable-next-line default-param-last
 export default function productDetailReducer(state = {}, action) {
   switch (action.type) {
     case GET_PRODUCT_DETAIL_REQUEST:

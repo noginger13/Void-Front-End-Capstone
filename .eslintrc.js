@@ -15,6 +15,8 @@ module.exports = {
   rules: {
     'linebreak-style': 0,
     'no-console': 'off',
-    'comma-dangle': ['error', 'never']
+    'comma-dangle': ['error', 'never'],
+    'operator-linebreak': ['error', 'after'],
+    'default-param-last': ['error', 'never']
   }
 };

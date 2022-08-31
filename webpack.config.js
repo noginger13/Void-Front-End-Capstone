@@ -2,15 +2,16 @@ require('dotenv').config();
 
 const path = require('path');
 const webpack = require('webpack');
+const CompressionPlugin = require('compression-webpack-plugin');
 // const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const ReactRefreshPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+// const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
   mode: 'development',
   entry: path.join(__dirname, '/client/src/index.jsx'),
   output: {
     path: path.join(__dirname, '/client/dist'),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   devtool: 'source-map',
   module: {
@@ -19,45 +20,43 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /nodeModules/,
         use: {
-          loader: 'babel-loader',
-        },
+          loader: 'babel-loader'
+        }
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
-      },
-    ],
+        type: 'asset/resource'
+      }
+    ]
   },
   resolve: {
     extensions: ['', '.jsx', '.js'],
-    enforceExtension: false,
+    enforceExtension: false
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: path.resolve(__dirname, '/client/dist'),
     open: true,
     compress: true,
-    hot: true,
-    port: 3000,
+    hot: false,
+    port: 3000
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        API_KEY: JSON.stringify(process.env.API_KEY),
-      },
+        API_KEY: JSON.stringify(process.env.API_KEY)
+      }
     }),
-  ],
-  // devServer: {
-  //   index: "",
-  //   proxy: {
-  //     context: () => true,
-  //     target: "http://localhost:3000",
-  //   },
-  // },
+    new CompressionPlugin({
+      algorithm: "gzip",
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8
+    })
+  ]
 };
 
 /**

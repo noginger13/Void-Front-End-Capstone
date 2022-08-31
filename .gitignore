@@ -80,7 +80,10 @@ typings/
 
 # Nuxt.js build / generate output
 .nuxt
+
 # dist
+client/dist/
+!client/dist/index.html
 
 # Gatsby files
 .cache/
@@ -102,3 +105,8 @@ typings/
 
 # TernJS port file
 .tern-port
+
+# Finder Directory
+.DS_Store
+
+./my_fec.pem
